@@ -1,0 +1,75 @@
+{
+  "name": "testapp",
+  "version": "1.0.0",
+  "description": "AppleTV client/server application",
+  "main": "src",
+  "engine-strict": true,
+  "engines": {
+    "node": "^8.9.0",
+    "yarn": "^1.3.0"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "build": "webpack --progress",
+    "serve": "webpack-dev-server",
+    "dist": "NODE_ENV=prod webpack --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/phase2tech/xcode10-tvos12.git"
+  },
+  "keywords": [
+    "tvdml",
+    "react",
+    "apple",
+    "tvos",
+    "tvjs",
+    "tvml",
+    "tv"
+  ],
+  "author": "Frank Febbraro <frank@phase2technology.com>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "debug": "github:phase2/debug",
+    "file-loader": "^1.1.6",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "remove-markdown": "^0.3.0",
+    "striptags": "^3.1.1",
+    "throttle-debounce": "^2.0.1",
+    "tvdml": "^6.1.0",
+    "tvjs-google-analytics": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-react-require": "^3.0.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.21.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.5.0",
+    "jest-localstorage-mock": "^2.2.0",
+    "jest-mock-axios": "^2.1.11",
+    "regenerator-runtime": "^0.12.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
+  }
+}

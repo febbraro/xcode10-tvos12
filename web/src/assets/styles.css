@@ -1,0 +1,64 @@
+.title {
+  tv-text-style: none;
+  tv-visual-effect: unset;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue";
+  font-weight: black;
+  tv-text-max-lines: 3;
+}
+.text {
+  tv-text-style: none;
+  font-family: "Open Sans";
+}
+
+.background {
+  background-color: rgba(242, 242, 242, .9);
+}
+.black {
+  color: rgb(0, 0, 0);
+}
+.white {
+  color: rgb(255, 255, 255);
+}
+.red {
+  color: rgb(194, 24, 24);
+}
+.tint {
+  tv-tint-color: rgb(255, 255, 255);
+}
+
+.top {
+  tv-position: top;
+}
+
+.img {
+  border-radius: none;
+}
+.premium {
+  tv-align: center;
+  tv-position: center;
+  width: 100;
+  height: 100;
+}
+.subscribed {
+  tv-align: right;
+  tv-position: top-trailing;
+  height: 150;
+  width: 150;
+  margin-top: -90;
+  margin-right: -25;
+}
+.button {
+  height: 100pt;
+  min-width: 250pt;
+  background-color: rgb(109, 109, 109);
+  border-radius: 0;
+  tv-position: bottom;
+  margin-top: 200;
+}
+.button-red {
+  background-color: rgb(194, 24, 24);
+}
+.button-text {
+  font-size: 40;
+}
