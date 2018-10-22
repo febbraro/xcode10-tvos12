@@ -36,4 +36,3 @@ export function findVideoSource(sources, resolution = '1080p') {
     : [];
   return sources.find(s => usableResolutions.includes(s.label));
 }
-

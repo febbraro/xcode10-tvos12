@@ -16,11 +16,8 @@ const rootReducer = combineReducers({
 
 const middleware = [
   thunkMiddleware,
+  loggerMiddleware,
 ];
-
-if (ENV === 'dev') {
-  middleware.push(loggerMiddleware);
-}
 
 export default createStore(
   rootReducer,

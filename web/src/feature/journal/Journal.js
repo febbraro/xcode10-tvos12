@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import * as TVDML from 'tvdml';
 import debug from 'debug';
 
+import Loader from '../../components/Loader';
 import Shelf from './Shelf';
 import VideoPlayer from '../video/VideoPlayer';
 
@@ -11,7 +12,7 @@ import { findVideoSource } from '../../utils';
 
 import {
   fetchJournal,
-  journalInvalidate,
+  fetchCategoryPage,
 } from './actions';
 
 const log = debug('journal:Journal');
@@ -65,15 +66,15 @@ class Journal extends Component {
     player.play();
   };
 
-  // Callback when data needs to be refreshed. This happens when a user
   render() {
     log('Journal.render: %O', this.props);
 
-    if (this.props.loading || this.props.isInvalid) {
-      return '';
+    if (this.props.loading) {
+      return (
+        <Loader title="" />
+      );
     }
 
-    log('Returngin real doc');
     return (
       <document>
         <head>
@@ -95,10 +96,10 @@ class Journal extends Component {
                 key={category}
                 category={category}
                 videos={videos}
-                baseURL={this.props.baseURL}
                 onVideoHighlight={this.onVideoHighlight}
                 onVideoSelection={this.onVideoSelection}
                 onVideoPlay={this.onVideoPlay}
+                getCategoryPage={this.props.getCategoryPage}
               />
             ))
             }
@@ -110,31 +111,27 @@ class Journal extends Component {
 }
 
 const mapStateToProps = state => ({
-  baseURL: state.appReducer.launchParams.BASEURL,
   videos: state.journalReducer.videos,
   loading: state.journalReducer.loading,
-  isInvalid: state.journalReducer.isInvalid,
 });
 
 const mapDispatchToProps = dispatch => ({
   getVideos: () => dispatch(fetchJournal()),
-  invalidateData: () => dispatch(journalInvalidate()),
+  getCategoryPage: (category, pageNumber) => dispatch(fetchCategoryPage(category, pageNumber)),
 });
 
 Journal.propTypes = {
-  baseURL: PropTypes.string.isRequired,
   loading: PropTypes.bool,
-  isInvalid: PropTypes.bool,
   videos: PropTypes.shape({
     categories: PropTypes.object,
     byId: PropTypes.object,
   }),
   getVideos: PropTypes.func.isRequired,
+  getCategoryPage: PropTypes.func.isRequired,
 };
 
 Journal.defaultProps = {
   loading: true,
-  isInvalid: false,
   videos: {
     categories: {},
     byId: {},

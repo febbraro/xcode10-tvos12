@@ -13,7 +13,7 @@ function MenuBar(props) {
         <menuBar>
           <menuItem route="journal">
             <title>
-            JOURNAL
+              JOURNAL
             </title>
           </menuItem>
         </menuBar>
