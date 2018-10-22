@@ -45,7 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TVApplicationControllerDe
             appControllerContext.javaScriptApplicationURL = javaScriptURL
         }
         
-        //appControllerContext.launchOptions["BASEURL"] = AppDelegate.tvBaseURL as NSString
+        
+        appControllerContext.launchOptions["BASEURL"] = AppDelegate.tvBaseURL as NSString
         //appControllerContext.launchOptions["NATIVE_SCALE"] = UIScreen.main.nativeScale as CGFloat
         //appControllerContext.launchOptions["NATIVE_BOUNDS_WIDTH"] = UIScreen.main.nativeBounds.width as CGFloat
         //appControllerContext.launchOptions["NATIVE_BOUNDS_HEIGHT"] = UIScreen.main.nativeBounds.height as CGFloat
