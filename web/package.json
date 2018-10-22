@@ -43,7 +43,7 @@
     "remove-markdown": "^0.3.0",
     "striptags": "^3.1.1",
     "throttle-debounce": "^2.0.1",
-    "tvdml": "^6.2.0",
+    "tvdml": "6.2.1",
     "tvjs-google-analytics": "^1.0.1"
   },
   "devDependencies": {
@@ -60,14 +60,14 @@
     "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^21.25.0",
+    "eslint-plugin-jest": "^21.25.1",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.5.0",
     "jest-localstorage-mock": "^2.2.0",
     "jest-mock-axios": "^2.1.11",
     "regenerator-runtime": "^0.12.1",
-    "webpack": "^4.16.5",
+    "webpack": "^4.21.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
     "webpack-merge": "^4.1.4"
