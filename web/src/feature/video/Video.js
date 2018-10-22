@@ -144,6 +144,8 @@ class Video extends Component {
                       PLAY
                     </title>
                   </buttonLockup>
+                  { '' }
+                  { '' }
                 </row>
               </organizer>
             </row>
