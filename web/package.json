@@ -43,7 +43,7 @@
     "remove-markdown": "^0.3.0",
     "striptags": "^3.1.1",
     "throttle-debounce": "^2.0.1",
-    "tvdml": "^6.2.1",
+    "tvdml": "^6.2.2",
     "tvjs-google-analytics": "^1.0.1"
   },
   "devDependencies": {
@@ -64,7 +64,7 @@
     "regenerator-runtime": "^0.12.1",
     "webpack": "^4.22.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5",
+    "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
   }
 }
