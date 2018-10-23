@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import debug from 'debug';
 
+import Loader from '../../components/Loader';
 import VideoPlayer from './VideoPlayer';
 import {
   findVideoSource,
@@ -10,13 +11,10 @@ import {
 
 import {
   fetchVideo,
-  videoInvalidate,
 } from './actions';
-
 
 import bg from '../../assets/lightbg.png';
 import eyebrow from '../../assets/eyebrow.png';
-import premiumLock from '../../assets/premium.png';
 
 const log = debug('video:Video');
 
@@ -25,27 +23,9 @@ const log = debug('video:Video');
 const styles = require('../../assets/styles.css').toString();
 
 class Video extends Component {
-  constructor(props) {
-    super(props);
-    this.listeners = [];
-  }
-
   componentDidMount() {
     log('componentDidMount: %O', this.props);
     this.props.getVideo(this.props.slug);
-  }
-
-  componentDidUpdate() {
-    log('componentDidupdate: %O', this.props);
-    if (this.props.invalid && !this.props.loading) {
-      this.props.getVideo(this.props.slug);
-    }
-  }
-
-  // When the component is unmounting, remove the auth listeners
-  componentWillUnmount() {
-    log('componentWillUnmount');
-    this.listeners.forEach((item) => { item.remove(); });
   }
 
   playVideo = () => {
@@ -60,48 +40,24 @@ class Video extends Component {
     player.play();
   };
 
-  // Callback when data needs to be refreshed. This happens when a user
-  // authenticated or unauthenticated to make sure that the Journal data
-  // has the context of their login/subscription
-  // Written this way so 'this' works in callbacks
-  invalidateData = () => {
-    log('invalidateData');
-    this.props.invalidateData();
-  };
-
   render() {
     log('render: %O', this.props);
 
     if (!this.props.video || this.props.loading) {
-      return '';
+      return (
+        <Loader title="" />
+      );
     }
 
     this.videoItem = this.props.video.media.items.find(v => v.type === 'video');
     this.photoItem = this.props.video.media.items.find(v => v.type === 'photo');
     this.videoSource = findVideoSource(this.videoItem.sources);
 
-    let videoThumbnail = (
+    const videoThumbnail = (
       <lockup>
         <img class="video" src={this.photoItem.desktop} />
       </lockup>
     );
-
-
-    if (this.props.video.isPaid) {
-      videoThumbnail = (
-        <lockup>
-          <img class="video" src={this.photoItem.desktop} />
-          <overlay>
-            <img class="premium" src={`${this.props.baseURL}${premiumLock}`} />
-          </overlay>
-        </lockup>
-      );
-    }
-
-    let playTitle = 'PLAY';
-    if (this.props.video.isPaid) {
-      playTitle = 'TRAILER';
-    }
 
     return (
       <document>
@@ -176,11 +132,6 @@ class Video extends Component {
                 <description class="text video-text black" handlesOverflow="true" moreLabel="more">
                   {this.props.video.summaryRaw}
                 </description>
-                { (this.props.video.isPaid) ? (
-                  <text class="text video-text black" style={{ marginTop: 50 }}>
-                    Full length video is available with a Journal Subscription
-                  </text>
-                ) : '' }
                 <row style={{ marginTop: 50 }}>
                   <buttonLockup
                     onSelect={this.playVideo}
@@ -190,9 +141,11 @@ class Video extends Component {
                   >
                     <badge src="resource://button-play" />
                     <title class="black action-title">
-                      {playTitle}
+                      PLAY
                     </title>
                   </buttonLockup>
+                  { '' }
+                  { '' }
                 </row>
               </organizer>
             </row>
@@ -207,7 +160,6 @@ function mapStateToProps(state, ownProps) {
   const props = {
     baseURL: state.appReducer.launchParams.BASEURL,
     loading: state.videoReducer.loading,
-    invalid: state.videoReducer.invalid,
     video: null,
   };
 
@@ -224,14 +176,12 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = dispatch => ({
   getVideo: slug => dispatch(fetchVideo(slug)),
-  invalidateData: () => dispatch(videoInvalidate()),
 });
 
 Video.propTypes = {
   baseURL: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
-  invalid: PropTypes.bool.isRequired,
   video: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -245,7 +195,6 @@ Video.propTypes = {
     }).isRequired,
   }),
   getVideo: PropTypes.func.isRequired,
-  invalidateData: PropTypes.func.isRequired,
 };
 
 Video.defaultProps = {

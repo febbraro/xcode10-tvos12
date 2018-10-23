@@ -2,12 +2,10 @@ import {
   REQUESTING_VIDEO,
   SUCCESSFUL_VIDEO,
   FAILED_VIDEO,
-  INVALIDATE_VIDEO,
 } from '../actions';
 
 const defaultState = {
   loading: true,
-  invalid: false,
   video: null,
 };
 
@@ -26,12 +24,6 @@ export default function videoReducer(state = defaultState, action = {}) {
       return {
         ...state,
         loading: false,
-      };
-    case INVALIDATE_VIDEO:
-      return {
-        ...state,
-        invalid: true,
-        video: defaultState.video,
       };
     default:
       return state;

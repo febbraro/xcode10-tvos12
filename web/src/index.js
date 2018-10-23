@@ -15,6 +15,7 @@ import { showMessageFactory } from './utils';
 import MenuBar from './feature/app/MenuBar';
 import Journal from './feature/journal/Journal';
 import Video from './feature/video/Video';
+import Search from './feature/search/Search';
 
 // Attach debug to the global App scope so we can access it via the
 // Dev Console and configure logging directly. e.g. App.debug.enable('*')
@@ -53,6 +54,14 @@ TVDML
   .pipe(TVDML.render(payload => (
     <RuntimeWrapper>
       <Video slug={payload.navigation} />
+    </RuntimeWrapper>
+  )));
+
+TVDML
+  .handleRoute('search')
+  .pipe(TVDML.render(() => (
+    <RuntimeWrapper>
+      <Search />
     </RuntimeWrapper>
   )));
 
