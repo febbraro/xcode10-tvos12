@@ -16,6 +16,11 @@ function MenuBar(props) {
               JOURNAL
             </title>
           </menuItem>
+          <menuItem route="search">
+            <title>
+              SEARCH
+            </title>
+          </menuItem>
         </menuBar>
       </menuBarTemplate>
     </document>
